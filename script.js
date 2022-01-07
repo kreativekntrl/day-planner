@@ -34,8 +34,7 @@ function storeText(){
 //Updates current time 
 
 //Loops through our array of times and updates the color of the div
-function updateDiv () {
-    var currentTime = moment("1PM", "hA").format("hA");
+/*function updateDiv () {
     for (var i = 0; i < timeArray.length; i++) {
         if (parseInt(timeArray[i].text()) === parseInt(timeArray[4].text())){
             timeArray[i].addClass("present");
@@ -45,6 +44,48 @@ function updateDiv () {
             timeArray[i].addClass("future");
         }
     }
+}*/
+
+var nineAM = moment("9AM", "hA").format("hA");
+var tenAM = moment("10AM", "hA").format("hA");
+var elevenAM = moment("11AM", "hA").format("hA");
+var noon = moment("12PM", "hA").format("hA");
+var onePM = moment("1PM", "hA").format("hA");
+var twoPM = moment("2PM", "hA").format("hA");
+var threePM = moment("3PM", "hA").format("hA");
+var fourPM = moment("4PM", "hA").format("hA");
+var fivePM = moment("5PM", "hA").format("hA");
+
+var hourArray = [nineAM, tenAM, elevenAM, noon, onePM, twoPM, threePM, fourPM, fivePM];
+
+var currentTime = moment("10AM", "hA").format("hA");
+
+function updateDiv() {
+    for(j=i=0; i < timeArray.length && j < hourArray.length; i++, j++) {
+        if (parseInt(timeArray[i].text()) === parseInt(currentTime)) {
+            timeArray[i].addClass("present");
+        }
+        if (parseInt(timeArray[i].text()) < hourArray[i] && parseInt(timeArray[i].text()) > parseInt(currentTime)){
+            timeArray[i].addClass("past");
+        }
+        if (timeArray[i].text() > hourArray[i]){
+            timeArray[i].addClass("future");
+        }
+    }
 }
+
+/*function updateDiv() {
+    for(j=i=0; i < timeArray.length && j < hourArray.length; i++, j++) {
+        if (parseInt(timeArray[i].text()) === parseInt(currentTime)){
+            timeArray[i].addClass("present");
+            console.log(currentTime);
+        }
+        if (parseInt(timeArray[i].text()) != parseInt(currentTime)){
+            timeArray[i].addClass("past");
+        }
+        /*if (parseInt(timeArray[i].text()) > parseInt(currentTime)){
+            timeArray[i].addClass("future");
+        }*/
+
 
 updateDiv();
