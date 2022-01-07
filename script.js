@@ -65,10 +65,10 @@ function updateDiv() {
         if (parseInt(timeArray[i].text()) === parseInt(currentTime)) {
             timeArray[i].addClass("present");
         }
-        if (parseInt(timeArray[i].text()) < hourArray[i] && parseInt(timeArray[i].text()) > parseInt(currentTime)){
+        if (parseInt(hourArray[j]) < parseInt(currentTime) && parseInt(timeArray[i].text()) < parseInt(currentTime)){
             timeArray[i].addClass("past");
         }
-        if (timeArray[i].text() > hourArray[i]){
+        if (parseInt(timeArray[i].text()) > parseInt(currentTime) && parseInt(hourArray[j]) > parseInt(currentTime)){
             timeArray[i].addClass("future");
         }
     }
