@@ -10,9 +10,10 @@ var hour16 = $("#hour-16");
 var hour17 = $("#hour-17");
 var textBox;
 var timeDivId;
+var hourArray = [hour9, hour10, hour11, hour12, hour13, hour14, hour15, hour16, hour17];
 
 //on planner open current day is displayed 
-    //moment function updates a header with date
+//moment function updates a header with date
 var currentDate = moment().format("[Today is ]dddd, MMMM Do");
 $("#currentDay").text(currentDate);
 
@@ -26,25 +27,34 @@ saveBtn.on("click", function () {
 //Saves user input and stores to local storage 
 //happens when save button is clicked
 function storeText(){
-    localStorage.setItem(timeDiv, textBox);
+    localStorage.setItem(timeDivId, textBox);
 };
+
+//retrieves value from local storage and sets to textarea
+/*function printText() {
+    for (var hour = 9; hour <= 17; hour++) {
+        
+    }
+}*/
 
 //Updates current time div and changes colors
 var currentHour = moment().format("H");
 currentHour = parseInt(currentHour);
 
+updateDiv();
 function updateDiv() {
     for (var hour = 9; hour <= 17; hour++) {
-      var div = $("#hour-" + hour);
-      if (hour < currentHour) {
-        div.addClass("past");
-      } else if (hour === currentHour) {
-        div.addClass("present");
-      } else {
-        div.addClass("future");
-      }  
+        var div = $("#hour-" + hour);
+        /*var placeholer = $("#hour-" + hour);*/
+        if (hour < currentHour) {
+            div.addClass("past");
+        } else if (hour === currentHour) {
+            div.addClass("present");
+        } else {
+            div.addClass("future");
+        }  
+        div.children().eq(1).text(localStorage.getItem("hour-" + hour));
     }
 }
-updateDiv();
 
 
